@@ -108,7 +108,9 @@ function searchPeople() {
     vehicles.textContent = "Vehicles: " + response.data.results[0].vehicles;
     starships.textContent = "Starships: " + response.data.results[0].starships;
     films.textContent = "Films" + response.data.results[0].films;
-  });
+  }).catch(error =>{
+      starName.textContent = "Sorry! Cannot display API at this time. Try again later"
+  }) 
 }
 
 // this function searches the star wars api for planets and displays the data
@@ -128,7 +130,9 @@ function searchPlanets() {
       "Orbital Period: " + response.data.results[0].orbital_period;
     surfaceWater.textContent =
       "Surface Water: " + response.data.results[0].surface_water;
-  });
+  }).catch(error =>{
+    planetName.textContent = "Sorry! Cannot display API at this time. Try again later"
+}) ;
 }
 
 // this function searches the star wars api for films and displays the data
@@ -141,7 +145,9 @@ function searchFilms() {
     producers.textContent = "Producers: " + response.data.producer;
     releaseDate.textContent = "Release Date: " + response.data.release_date;
     openingCrawl.textContent = "Opening Crawl: " + response.data.opening_crawl;
-  });
+  }).catch(error =>{
+    filmTitle.textContent = "Sorry! Cannot display API at this time. Try again later"
+}) ;
 }
 // this function searches the star wars api for starships and displays the data
 function searchStarships() {
@@ -158,7 +164,9 @@ function searchStarships() {
       "Cargo Capacity: " + response.data.cargo_capacity;
     hyperdriveRating.textContent =
       "Hyperdrive Rating: " + response.data.hyperdrive_rating;
-  });
+  }).catch(error =>{
+    starshipName.textContent = "Sorry! Cannot display API at this time. Try again later"
+}) ;
 }
 
 // this function searches the star wars api for vehicles and displays the data
@@ -177,7 +185,9 @@ function searchVehicles() {
     vehicleClass.textContent = "Vehicle Class: " + response.data.vehicle_class;
     vehicleConsumables.textContent =
       "Consumables: " + response.data.consumables;
-  });
+  }).catch(error =>{
+    vehicleName.textContent = "Sorry! Cannot display API at this time. Try again later"
+}) ;
 }
 
 // this function searches the star wars api for species and displays the data
@@ -197,5 +207,7 @@ function searchSpecies() {
       "Average Lifespan: " + response.data.average_lifespan;
     speciesHomeWorld.textContent = "Home World: " + response.data.homeworld;
     speciesLanguage.textContent = "Language: " + response.data.language;
-  });
+  }).catch(error =>{
+    speciesName.textContent = "Sorry! Cannot display API at this time. Try again later"
+}) ;
 }
