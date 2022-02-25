@@ -13,7 +13,7 @@ starshipsBtn.addEventListener('click', generateApiSearch);
 vehiclesBtn.addEventListener('click', generateApiSearch);
 speciesBtn.addEventListener('click', generateApiSearch);
 planetsBtn.addEventListener('click', generateApiSearch);
-//quotesBtn.addEventListener('click', generateQuotesSearch);
+quotesBtn.addEventListener('click', generateQuotesSearch);
 
 function generateApiSearch (event) {
     console.log(event)
@@ -90,22 +90,24 @@ var catDisplay = document.getElementById("catDisplay");
 //this function searches the star wars api for people and displays the data
 function searchPeople(starWarsEl) {
   console.log (starWarsEl);
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
-    console.log(response);
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
+    console.log(data);
     catDisplay.textContent = "People Output"
-    spaceOne.textContent = "Name: " + response.data.name;
+    spaceOne.textContent = "Name: " + data.name;
     spaceTwo.textContent =
-      "Birth Year: " + response.data.birth_year;
+      "Birth Year: " + data.birth_year;
     spaceThree.textContent = ""
     spaceFour.textContent = ""
-    spaceFive.textContent = "Gender: " + response.data.gender;
-    spaceSix.textContent = "Height: " + response.data.height;
-    spaceSeven.textContent = "Weight: " + response.data.mass;
+    spaceFive.textContent = "Gender: " + data.gender;
+    spaceSix.textContent = "Height: " + data.height;
+    spaceSeven.textContent = "Weight: " + data.mass;
     spaceEight.textContent =
-      "Hair color: " + response.data.hair_color;
+      "Hair color: " + data.hair_color;
     spaceNine.textContent =
-      "Skin color: " + response.data.skin_color;
-    spaceTen.textContent = "Eye color: " + response.data.eye_color;
+      "Skin color: " + data.skin_color;
+    spaceTen.textContent = "Eye color: " + data.eye_color;
     // axios.get(response.data.results[0].vehicles).then(function (response) {
     //   console.log(response)
     // })
@@ -113,49 +115,55 @@ function searchPeople(starWarsEl) {
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-      spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
-  }) 
-}
+  // }).catch(error =>{
+  //     spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+    }) ;
+  });
+  };
 
 // this function searches the star wars api for planets and displays the data
 function searchPlanets(starWarsEl) {
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
-    console.log(response);
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
+    console.log(data);
     catDisplay.textContent = "Planets Output"
-    spaceOne.textContent = "Name: " + response.data.name;
+    spaceOne.textContent = "Name: " + data.name;
     spaceTwo.textContent =
-      "Population: " + response.data.population;
-    spaceThree.textContent = "Climate: " + response.data.climate;
-    spaceFour.textContent = "Terrain: " + response.data.terrain;
-    spaceFive.textContent = "Diameter: " + response.data.diameter;
-    spaceSix.textContent = "Gravity: " + response.data.gravity;
+      "Population: " + data.population;
+    spaceThree.textContent = "Climate: " + data.climate;
+    spaceFour.textContent = "Terrain: " + data.terrain;
+    spaceFive.textContent = "Diameter: " + data.diameter;
+    spaceSix.textContent = "Gravity: " + data.gravity;
     spaceSeven.textContent =
-      "Rotational Period: " + response.data.rotation_period;
+      "Rotational Period: " + data.rotation_period;
     spaceEight.textContent =
-      "Orbital Period: " + response.data.orbital_period;
+      "Orbital Period: " + data.orbital_period;
     spaceNine.textContent =
-      "Surface Water: " + response.data.surface_water;
+      "Surface Water: " + data.surface_water;
     spaceTen.textContent = ""
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-    spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
-}) ;
-}
+  // }).catch(error =>{
+  //   spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+  }) ;
+});
+};
 
 // this function searches the star wars api for films and displays the data
 function searchFilms(starWarsEl) {
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
-    console.log(response);
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
+    console.log(data);
     catDisplay.textContent = "Films Output"
-    spaceOne.textContent = "Title: " + response.data.title;
-    spaceTwo.textContent = "Episode Number: " + response.data.episode_id;
-    spaceThree.textContent = "Director: " + response.data.director;
-    spaceFour.textContent = "Producers: " + response.data.producer;
-    spaceFive.textContent = "Release Date: " + response.data.release_date;
-    spaceSix.textContent = "Opening Crawl: " + response.data.opening_crawl;
+    spaceOne.textContent = "Title: " + data.title;
+    spaceTwo.textContent = "Episode Number: " + data.episode_id;
+    spaceThree.textContent = "Director: " + data.director;
+    spaceFour.textContent = "Producers: " + data.producer;
+    spaceFive.textContent = "Release Date: " + data.release_date;
+    spaceSix.textContent = "Opening Crawl: " + data.opening_crawl;
     spaceSeven.textContent = ""
     spaceEight.textContent = ""
     spaceNine.textContent = ""
@@ -163,84 +171,167 @@ function searchFilms(starWarsEl) {
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-    spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
-}) ;
-}
+  // }).catch(error =>{
+  //   spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+  }) ;
+});
+};
 // this function searches the star wars api for starships and displays the data
 function searchStarships(starWarsEl) {
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
-    console.log(response);
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
+    console.log(data);
     catDisplay.textContent = "Starships Output"
-    spaceOne.textContent = "Starship: " + response.data.name;
+    spaceOne.textContent = "Starship: " + data.name;
     spaceTwo.textContent =
-      "Manufacturer: " + response.data.manufacturer;
-    spaceThree.textContent = "Model: " + response.data.model;
-    spaceFour.textContent = "Cost: " + response.data.cost_in_credits;
-    spaceFive.textContent = "Crew: " + response.data.crew;
-    spaceSix.textContent = "Passengers: " + response.data.passengers;
+      "Manufacturer: " + data.manufacturer;
+    spaceThree.textContent = "Model: " + data.model;
+    spaceFour.textContent = "Cost: " + data.cost_in_credits;
+    spaceFive.textContent = "Crew: " + data.crew;
+    spaceSix.textContent = "Passengers: " + data.passengers;
     spaceSeven.textContent =
-      "Cargo Capacity: " + response.data.cargo_capacity;
+      "Cargo Capacity: " + data.cargo_capacity;
     spaceEight.textContent =
-      "Hyperdrive Rating: " + response.data.hyperdrive_rating;
+      "Hyperdrive Rating: " + data.hyperdrive_rating;
     spaceNine.textContent = ""
     spaceTen.textContent = ""
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-    spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
-}) ;
-}
+  // }).catch(error =>{
+  //   spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+  }) ;
+});
+};
 
 // this function searches the star wars api for vehicles and displays the data
 function searchVehicles(starWarsEl) {
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
     console.log(response);
     catDisplay.textContent = "Vehicles Output"
-    spaceOne.textContent = "Vehicle: " + response.data.name;
-    spaceTwo.textContent = "Model: " + response.data.model;
+    spaceOne.textContent = "Vehicle: " + data.name;
+    spaceTwo.textContent = "Model: " + data.model;
     spaceThree.textContent =
-      "Manufacturer: " + response.data.manufacturer;
-    spaceFour.textContent = "Cost: " + response.data.cost_in_credits;
-    spaceFive.textContent = "Crew: " + response.data.crew;
-    spaceSix.textContent = "Passengers: " + response.data.passengers;
+      "Manufacturer: " + data.manufacturer;
+    spaceFour.textContent = "Cost: " + data.cost_in_credits;
+    spaceFive.textContent = "Crew: " + data.crew;
+    spaceSix.textContent = "Passengers: " + data.passengers;
     spaceSeven.textContent =
-      "Cargo Capacity: " + response.data.cargo_capacity;
-    spaceEight.textContent = "Vehicle Class: " + response.data.vehicle_class;
+      "Cargo Capacity: " + data.cargo_capacity;
+    spaceEight.textContent = "Vehicle Class: " + data.vehicle_class;
     spaceNine.textContent =
-      "Consumables: " + response.data.consumables;
+      "Consumables: " + data.consumables;
     spaceTen.textContent = ""
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-    spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
-}) ;
-}
+  // }).catch(error =>{
+  //   spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+  }) ;
+});
+};
 
 // this function searches the star wars api for species and displays the data
 function searchSpecies(starWarsEl) {
-  axios.get("https://swapi.dev/api/" + starWarsEl + "/").then(function (response) {
-    console.log(response);
+  fetch("https://swapi.dev/api/" + starWarsEl + "/")
+      .then(function (response) { 
+        response.json().then(function (data) {
+
+    console.log(data);
     catDisplay.textContent = "Species Output"
-    spaceOne.textContent = "Species: " + response.data.name;
+    spaceOne.textContent = "Species: " + data.name;
     spaceTwo.textContent =
-      "Classification: " + response.data.classification;
-    spaceThree.textContent = "Designation: " + response.data.designation;
+      "Classification: " + data.classification;
+    spaceThree.textContent = "Designation: " + data.designation;
     spaceFour.textContent =
-      "Average Height: " + response.data.average_height;
-    spaceFive.textContent = "Skin Color: " + response.data.skin_colors;
-    spaceSix.textContent = "Hair Color: " + response.data.hair_colors;
-    spaceSeven.textContent = "Eye Colors: " + response.data.eye_colors;
+      "Average Height: " + data.average_height;
+    spaceFive.textContent = "Skin Color: " + data.skin_colors;
+    spaceSix.textContent = "Hair Color: " + data.hair_colors;
+    spaceSeven.textContent = "Eye Colors: " + data.eye_colors;
     spaceEight.textContent =
-      "Average Lifespan: " + response.data.average_lifespan;
+      "Average Lifespan: " + data.average_lifespan;
     spaceNine.textContent = ""
-    spaceTen.textContent = "Language: " + response.data.language;
+    spaceTen.textContent = "Language: " + data.language;
     spaceEleven.textContent = ""
     spaceTwelve.textContent = ""
     spaceThirteen.textContent = ""
-  }).catch(error =>{
-    spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
+  // }).catch(error =>{
+  //   spaceOne.textContent = "Sorry! Cannot display API at this time. Try again later"
 }) ;
+});
+};
+
+var randomQuote = document.getElementById("randomQuote");
+function generateQuotesSearch(){
+  fetch('http://swquotesapi.digitaljedi.dk/api/SWQuote/RandomStarWarsQuote')
+  .then(function (response) { 
+    response.json().then(function (data) {
+    console.log(data);
+    randomQuote.textContent = data.content
+    
+    });
+});
+};
+
+
+
+
+function renderEnlisted() {
+  removeAllChildNodes(factionContainerEl);
+  var faction = localStorage.getItem("faction");
+  console.log(faction + " hello there");
+  
+  if (faction == "Empire") {
+    icon = document.createElement('img');
+    icon.src = './images/empire.png'
+    factionContainerEl.appendChild(icon);
+    icon.style.width = "250px";
+  }
+  if (faction == "Rebels") {
+    icon = document.createElement('img');
+    icon.src = './images/rebels.png'
+    factionContainerEl.appendChild(icon);
+    icon.style.width = "250px";
+    }
+    else {
+      return;
+    }
+
+};
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+  }
 }
+
+
+//email submit and enlist
+var emailInput = document.querySelector("#email");
+var factionInput = document.querySelector("#faction");
+var enlistBtn = document.querySelector("#enlist");
+
+var factionContainerEl = document.querySelector('#faction-container');
+
+enlistBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+  var email = document.querySelector("#email").value;
+  var faction = document.querySelector("#faction").value;
+  console.log(email);
+  console.log(faction);
+
+
+  localStorage.setItem("email", email);
+  localStorage.setItem("faction", faction);
+  renderEnlisted();
+
+});
+
+function init () {
+  renderEnlisted();
+}
+
+init ();
